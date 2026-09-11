@@ -270,6 +270,26 @@ function fixSidebarToggle() {
       true,
     ); // Use capture phase to run before PST's handler
   }
+
+  const secondaryToggle = document.getElementById("sbt-secondary-sidebar-toggle");
+  const secondarySidebar = document.getElementById("pst-secondary-sidebar");
+  const secondaryDialog = document.getElementById("pst-secondary-sidebar-modal");
+
+  // Fix secondary sidebar toggle
+  if (secondaryToggle && secondarySidebar && secondaryDialog) {
+    // Intercept clicks on the toggle button BEFORE pydata-sphinx-theme's handler
+    secondaryToggle.addEventListener(
+      "click",
+      (event) => {
+        // Stop pydata-sphinx-theme's own toggle handler from also firing
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        // Open the mobile dialog
+        moveSidebarIntoDialog(secondarySidebar, secondaryDialog);
+      },
+      true,
+    ); // Use capture phase to run before PST's handler
+  }
 }
 
 /**
