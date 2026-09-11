@@ -203,6 +203,41 @@ function addBlurToButtons() {
 }
 
 /**
+ * Move the contents of a wide-screen sidebar into its mobile <dialog>, the same
+ * way pydata-sphinx-theme does, so that sbt's article-header toggle buttons can
+ * open the mobile drawer themselves. This is needed because PST only binds its
+ * `.primary-toggle` / `.secondary-toggle` handlers to the *first* matching
+ * element, which is the (hidden) navbar hamburger when a navbar is rendered.
+ */
+function moveSidebarIntoDialog(sidebar, dialog) {
+  if (dialog.open) {
+    return;
+  }
+
+  // Restore focus to the toggle button when the dialog closes.
+  const previouslyFocused = document.activeElement;
+
+  // Cut and paste the sidebar contents (and its classes) into the dialog.
+  Array.from(sidebar.childNodes).forEach((node) => dialog.appendChild(node));
+  Array.from(sidebar.classList).forEach((cls) => {
+    sidebar.classList.remove(cls);
+    dialog.classList.add(cls);
+  });
+
+  dialog.showModal();
+
+  dialog.addEventListener(
+    "close",
+    () => {
+      if (previouslyFocused && previouslyFocused.focus) {
+        previouslyFocused.focus();
+      }
+    },
+    { once: true },
+  );
+}
+
+/**
  * Fix sidebar toggle behavior for wide screens
  * On wide screens (>= 992px), clicking the toggle should collapse the sidebar,
  * not open it as a dialog modal. The dialog behavior is only for narrow screens.
@@ -220,13 +255,16 @@ function fixSidebarToggle() {
       (event) => {
         const isWideScreen = window.matchMedia("(min-width: 992px)").matches;
 
-        if (isWideScreen) {
-          // On wide screens, prevent the dialog from opening and toggle sidebar visibility instead
-          event.preventDefault();
-          event.stopImmediatePropagation();
+        // Stop pydata-sphinx-theme's own toggle handler from also firing
+        event.preventDefault();
+        event.stopImmediatePropagation();
 
-          // Toggle a class to hide/show the sidebar
+        if (isWideScreen) {
+          // On wide screens, toggle sidebar visibility
           primarySidebar.classList.toggle("pst-sidebar-hidden");
+        } else {
+          // On narrow screens, open the mobile dialog
+          moveSidebarIntoDialog(primarySidebar, primaryDialog);
         }
       },
       true,
