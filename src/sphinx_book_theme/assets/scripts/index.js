@@ -196,8 +196,7 @@ function addBlurToButtons() {
 
   // Add blur on click for each button type
   buttonSelectors.forEach((selector) => {
-    const button = document.querySelector(selector);
-    if (button) {
+    document.querySelectorAll(selector).forEach((button) => {
       button.addEventListener(
         "click",
         () => {
@@ -205,7 +204,7 @@ function addBlurToButtons() {
         },
         true,
       );
-    }
+    })
   });
 }
 
@@ -215,9 +214,9 @@ function addBlurToButtons() {
  * not open it as a dialog modal. The dialog behavior is only for narrow screens.
  */
 function fixSidebarToggle() {
-  const primaryToggle = document.querySelector(".primary-toggle");
-  const primarySidebar = document.querySelector("#pst-primary-sidebar");
-  const primaryDialog = document.querySelector("#pst-primary-sidebar-modal");
+  const primaryToggle = document.getElementById("sbt-primary-sidebar-toggle");
+  const primarySidebar = document.getElementById("pst-primary-sidebar");
+  const primaryDialog = document.getElementById("pst-primary-sidebar-modal");
 
   // Fix primary sidebar toggle
   if (primaryToggle && primarySidebar && primaryDialog) {
