@@ -276,6 +276,31 @@ function fixSidebarToggle() {
       true,
     ); // Use capture phase to run before PST's handler
   }
+
+  const secondaryToggle = document.getElementById("sbt-secondary-sidebar-toggle");
+  const secondarySidebar = document.getElementById("pst-secondary-sidebar");
+  const secondaryDialog = document.getElementById("pst-secondary-sidebar-modal");
+
+  // Fix secondary sidebar toggle
+  if (secondaryToggle && secondarySidebar && secondaryDialog) {
+    // Intercept clicks on the toggle button BEFORE pydata-sphinx-theme's handler
+    secondaryToggle.addEventListener(
+      "click",
+      (event) => {
+        const isWideScreen = window.matchMedia("(min-width: 992px)").matches;
+
+        // Stop pydata-sphinx-theme's own toggle handler from also firing
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        if (!isWideScreen) {
+          // On narrow screens, open the mobile dialog
+          moveSidebarIntoDialog(secondarySidebar, secondaryDialog);
+        }
+      },
+      true,
+    ); // Use capture phase to run before PST's handler
+  }
 }
 
 /**
