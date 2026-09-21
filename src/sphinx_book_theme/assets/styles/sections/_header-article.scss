@@ -173,13 +173,6 @@ button.sidebar-toggle.secondary-toggle {
       align-items: center;
       padding-left: 0.5em;
 
-      // To prevent link underline from showing up
-      &:hover {
-        text-decoration: none;
-        background-color: initial;
-        color: var(--pst-color-text-base);
-      }
-
       // Slightly smaller font for everything
       font-size: 1em;
 
