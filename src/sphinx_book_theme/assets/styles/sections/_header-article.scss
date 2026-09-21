@@ -187,6 +187,13 @@ button.sidebar-toggle.secondary-toggle {
         display: inline-flex;
         justify-content: center;
       }
+
+      // Highlight on cursor hover / keyboard focus
+      &:hover,
+      &:focus {
+        color: var(--pst-color-secondary);
+        background-color: var(--bs-dropdown-link-active-bg);
+      }
     }
   }
 }
