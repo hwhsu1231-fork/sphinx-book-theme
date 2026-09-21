@@ -39,8 +39,8 @@
 {% macro render_button_group(buttons, icon, tooltip=None, label=None, classes="") %}
 {# A bootstrap dropdown #}
 {# Bootstrap dropdown ref: https://getbootstrap.com/docs/5.2/components/dropdowns/ #}
-<div class="dropdown{% if label %} dropdown-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{tooltip}}">
+<div class="dropdown{% if label %} dropdown-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}"{% if tooltip %} data-bs-placement="bottom" data-bs-toggle="tooltip" title="{{ tooltip }}"{% endif %}>
+  <button class="btn dropdown-toggle pst-navbar-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{tooltip}}">
     <i class="{{ icon }}"></i>
   </button>
   <ul class="dropdown-menu">
