@@ -109,7 +109,7 @@ button.sidebar-toggle.secondary-toggle {
     // Hover / active behavior
     &.show,
     &:hover {
-      color: var(--pst-color-text-base);
+      color: var(--pst-color-secondary);
       border: none;
     }
     &:focus {
