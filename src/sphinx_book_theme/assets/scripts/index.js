@@ -210,6 +210,34 @@ function addBlurToButtons() {
 }
 
 /**
+ * Disable the tooltip on header dropdown buttons while their dropdown is open.
+ *
+ * This matches the behavior of the theme switcher in pydata-sphinx-theme:
+ * the tooltip is hidden and disabled when the dropdown opens, and re-enabled
+ * when it closes, so hovering the icon while the menu is open doesn't show it.
+ */
+function setupDropdownTooltips() {
+  document
+    .querySelectorAll(
+      '.dropdown[data-bs-toggle="tooltip"]:not(.theme-switch-container)',
+    )
+    .forEach((container) => {
+      const tooltip = window.bootstrap
+        ? window.bootstrap.Tooltip.getInstance(container)
+        : null;
+      if (!tooltip) return;
+
+      container.addEventListener("show.bs.dropdown", () => {
+        tooltip.hide();
+        tooltip.disable();
+      });
+      container.addEventListener("hide.bs.dropdown", () => {
+        tooltip.enable();
+      });
+    });
+}
+
+/**
  * Fix sidebar toggle behavior for wide screens
  * On wide screens (>= 992px), clicking the toggle should collapse the sidebar,
  * not open it as a dialog modal. The dialog behavior is only for narrow screens.
@@ -247,4 +275,5 @@ function fixSidebarToggle() {
 sbRunWhenDOMLoaded(initTocHide);
 sbRunWhenDOMLoaded(addNoPrint);
 sbRunWhenDOMLoaded(addBlurToButtons);
+sbRunWhenDOMLoaded(setupDropdownTooltips);
 sbRunWhenDOMLoaded(fixSidebarToggle);
