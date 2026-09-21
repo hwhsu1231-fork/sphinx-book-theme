@@ -111,9 +111,6 @@ button.sidebar-toggle.secondary-toggle {
     &:hover {
       color: var(--pst-color-text-base);
       border: none;
-      & + .dropdown-menu {
-        display: block;
-      }
     }
     &:focus {
       box-shadow: none;
@@ -161,11 +158,6 @@ button.sidebar-toggle.secondary-toggle {
 
   // The menu that is normally hidden until you hover
   .dropdown-menu {
-    // Hidden unless we are hovering
-    &:hover {
-      display: block;
-    }
-
     // Positioning and layout of dropdown items to be standardized
     top: 2rem;
     transform: translateX(-75%);
