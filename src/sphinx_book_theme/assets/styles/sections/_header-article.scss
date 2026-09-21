@@ -151,12 +151,12 @@ button.sidebar-toggle.secondary-toggle {
       background-color: unset !important;
       span,
       i {
-        color: var(--pst-color-text-base);
+        color: var(--pst-color-secondary);
       }
     }
   }
 
-  // The menu that is normally hidden until you hover
+  // The menu that is shown when the dropdown button is clicked
   .dropdown-menu {
     // Positioning and layout of dropdown items to be standardized
     top: 2rem;

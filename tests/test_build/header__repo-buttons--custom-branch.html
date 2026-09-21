@@ -1,14 +1,14 @@
 <div class="header-article-items__end">
  <div class="header-article-item">
   <div class="article-header-buttons">
-   <div class="dropdown dropdown-launch-buttons">
-    <button aria-expanded="false" aria-label="Launch interactive content" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+   <div class="dropdown dropdown-launch-buttons" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Launch interactive content">
+    <button aria-expanded="false" aria-label="Launch interactive content" class="btn dropdown-toggle pst-navbar-icon" data-bs-toggle="dropdown" type="button">
      <i class="fas fa-rocket">
      </i>
     </button>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu dropdown-menu-end">
      <li>
-      <a class="btn btn-sm dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="https://mybinder.org/v2/gh/executablebooks/sphinx-book-theme/foo?urlpath=tree/section1/ntbk.ipynb" target="_blank" title="Launch on Binder">
+      <a class="btn btn-sm dropdown-item" href="https://mybinder.org/v2/gh/executablebooks/sphinx-book-theme/foo?urlpath=tree/section1/ntbk.ipynb" target="_blank">
        <span class="btn__icon-container">
         <img alt="Binder logo" src="../_static/images/logo_binder.svg"/>
        </span>
@@ -25,14 +25,14 @@
      </i>
     </span>
    </a>
-   <div class="dropdown dropdown-download-buttons">
-    <button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+   <div class="dropdown dropdown-download-buttons" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Download this page">
+    <button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle pst-navbar-icon" data-bs-toggle="dropdown" type="button">
      <i class="fas fa-download">
      </i>
     </button>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu dropdown-menu-end">
      <li>
-      <a class="btn btn-sm btn-download-source-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="../_sources/section1/ntbk.ipynb" target="_blank" title="Download source file">
+      <a class="btn btn-sm btn-download-source-button dropdown-item" href="../_sources/section1/ntbk.ipynb" target="_blank">
        <span class="btn__icon-container">
         <i class="fas fa-file">
         </i>
@@ -43,7 +43,7 @@
       </a>
      </li>
      <li>
-      <button class="btn btn-sm btn-download-pdf-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" onclick="window.print()" title="Print to PDF">
+      <button class="btn btn-sm btn-download-pdf-button dropdown-item" onclick="window.print()">
        <span class="btn__icon-container">
         <i class="fas fa-file-pdf">
         </i>

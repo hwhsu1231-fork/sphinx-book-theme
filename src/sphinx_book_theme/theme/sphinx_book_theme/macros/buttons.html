@@ -46,6 +46,7 @@
       {% set btype = button.get("type") %}
       {% set bopts = button.copy() %}
       {% set _ = bopts.pop("type") %}
+      {% set _ = bopts.pop("tooltip", None) %}
       <li>{{ render_funcs[btype](classes="dropdown-item", tooltip_placement="left", **bopts) }}</li>
       {% endfor %}
   </ul>
