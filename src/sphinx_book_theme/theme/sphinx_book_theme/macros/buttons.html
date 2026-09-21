@@ -41,7 +41,7 @@
   <button class="btn dropdown-toggle pst-navbar-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{tooltip}}">
     <i class="{{ icon }}"></i>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu dropdown-menu-end">
       {%- for button in buttons %}
       {% set btype = button.get("type") %}
       {% set bopts = button.copy() %}
