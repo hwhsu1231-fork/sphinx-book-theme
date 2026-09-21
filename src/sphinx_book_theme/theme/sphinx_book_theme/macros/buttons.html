@@ -17,8 +17,7 @@
 {% macro render_link_button(url, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="") -%}
 <a href="{{ url }}" target="_blank"
    class="btn btn-sm{% if label %} btn-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
-   {% if tooltip %}title="{{ translate(tooltip) }}"{% endif %}
-   data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"
+   {% if tooltip %}title="{{ translate(tooltip) }}" data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"{% endif %}
 >
   {{ render_inner_html(icon, text) }}
 </a>
@@ -28,8 +27,7 @@
 {% macro render_js_button(javascript, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="") %}
 <button onclick="{{ javascript }}"
   class="btn btn-sm{% if label %} btn-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
-  {% if tooltip %}title="{{ translate(tooltip) }}"{% endif %}
-  data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"
+  {% if tooltip %}title="{{ translate(tooltip) }}" data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"{% endif %}
 >
   {{ render_inner_html(icon, text) }}
 </button>
