@@ -176,13 +176,20 @@ button.sidebar-toggle.secondary-toggle {
       // Slightly smaller font for everything
       font-size: 1em;
 
-      // Image icons should be the same height as <i> icons
+      // Match the line height of the PST-provided theme switcher items so
+      // both dropdowns have the same row height.
+      line-height: 1.65;
+
+      // Image icons should be the same height as the `<i>` icons, which
+      // carry `fa-lg` and therefore scale to 1.25em.
       span img {
-        height: 1em;
+        height: 1.25em;
       }
 
       span.btn__icon-container {
-        width: 1.7em;
+        // Reserve the same icon column width as the theme switcher icons,
+        // which are sized with `fa-fw` (1.25em) plus a `me-1` margin.
+        width: calc(1.25em + 0.25rem);
         align-items: center;
         display: inline-flex;
         justify-content: center;

@@ -1,10 +1,12 @@
 {# Utility macros we'll reuse below -#}
-{% macro render_inner_html(icon, text) %}
+{% macro render_inner_html(icon, text, in_dropdown=False) %}
 {# used across multiple button types #}
 {% if icon -%}
 <span class="btn__icon-container">
   {% if icon.startswith("fa") -%}
-    <i class="{{ icon }}"></i>
+    {# Match the icon sizing of the theme switcher items, which carry
+       `fa-lg` (1.25em), `fa-fw` (fixed width) and a `me-1` margin. #}
+    <i class="{{ icon }}{% if in_dropdown %} fa-lg fa-fw me-1{% endif %}"></i>
   {% else %}
     <img alt="{{ translate(text) }} {{ translate("logo") }}" src="{{ pathto(icon, 1) }}">
   {% endif -%}
@@ -14,22 +16,22 @@
 {% endmacro %}
 
 
-{% macro render_link_button(url, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="") -%}
+{% macro render_link_button(url, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="", in_dropdown=False) -%}
 <a href="{{ url }}" target="_blank"
    class="btn btn-sm{% if label %} btn-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
    {% if tooltip %}title="{{ translate(tooltip) }}" data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"{% endif %}
 >
-  {{ render_inner_html(icon, text) }}
+  {{ render_inner_html(icon, text, in_dropdown) }}
 </a>
 {% endmacro %}
 
 
-{% macro render_js_button(javascript, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="") %}
+{% macro render_js_button(javascript, tooltip=None, tooltip_placement="bottom", icon=None, text=None, label=None, classes="", in_dropdown=False) %}
 <button onclick="{{ javascript }}"
   class="btn btn-sm{% if label %} btn-{{ label }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
   {% if tooltip %}title="{{ translate(tooltip) }}" data-bs-placement="{{ tooltip_placement }}" data-bs-toggle="tooltip"{% endif %}
 >
-  {{ render_inner_html(icon, text) }}
+  {{ render_inner_html(icon, text, in_dropdown) }}
 </button>
 {% endmacro %}
 
@@ -47,7 +49,8 @@
       {% set bopts = button.copy() %}
       {% set _ = bopts.pop("type") %}
       {% set _ = bopts.pop("tooltip", None) %}
-      <li>{{ render_funcs[btype](classes="dropdown-item", tooltip_placement="left", **bopts) }}</li>
+      {# Items inside a dropdown get the same icon sizing as the theme switcher #}
+      <li>{{ render_funcs[btype](classes="dropdown-item", tooltip_placement="left", in_dropdown=True, **bopts) }}</li>
       {% endfor %}
   </ul>
 </div>
